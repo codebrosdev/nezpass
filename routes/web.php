@@ -16,8 +16,7 @@ use Illuminate\Support\Facades\DB;
 
 use Lefuturiste\LessPass as LessPass;
 
-use \App\Http\Controllers\ShowSignup;
-use \App\Http\Controllers\SaveRegistration;
+use \App\Http\Controllers\PasswordProfileController;
 
 function checkIfExists($table, $value, $field = 'id'){
     return DB::table($table)->where($field, $value)->exists();
@@ -87,8 +86,10 @@ Route::post('/generate', function (Request $request) {
 })->name('generate_password');
 
 
-Route::get('/signup', 'ShowSignup')->name('show.signup');
-Route::post('/signup', 'SaveRegistration')->name('save.registration');
+Route::get('/generated-passwords/request','PasswordProfileController@requestRecentPasswords')
+    ->name('generated_passwords.requestrecent');
+Route::post('/generated-passwords/show', 'PasswordProfileController@showRecentPasswords')
+    ->name('generated_passwords.showrecent');
 
 Route::get('/login', function () {
    return 'Hello Login';
