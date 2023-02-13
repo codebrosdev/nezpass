@@ -24,6 +24,7 @@ class CreatePasswordProfilesTable extends Migration
             $table->integer('counter')->default(1);
 			$table->string('session_id');
 		    $table->dateTime('expires_at');
+            $table->bigInteger('claimed_by') ; //user_id
             $table->timestamps();
         });
     }
