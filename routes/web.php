@@ -86,11 +86,21 @@ Route::post('/generate', function (Request $request) {
 })->name('generate_password');
 
 
+//Route::get('/hello', function () {
+//   return 'Hello Login';
+//});
+
+Route::get('login', 'AuthController@index');
+Route::post('post-login', 'AuthController@postLogin'); 
+Route::get('registration', 'AuthController@registration');
+Route::post('post-registration', 'AuthController@postRegistration'); 
+Route::get('dashboard', 'AuthController@dashboard'); 
+Route::get('logout', 'AuthController@logout');
+
+//these will eventually be obsolete if user login / reg is done
 Route::get('/generated-passwords/request','PasswordProfileController@requestRecentPasswords')
     ->name('generated_passwords.requestrecent');
 Route::post('/generated-passwords/show', 'PasswordProfileController@showRecentPasswords')
     ->name('generated_passwords.showrecent');
 
-Route::get('/login', function () {
-   return 'Hello Login';
-});
+
